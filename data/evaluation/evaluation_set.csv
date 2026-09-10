@@ -1,0 +1,201 @@
+evaluation_id,customer_tweet_id,customer_text,intent,ideal_action,notes
+3481eca0-e858-4e14-9c85-619387fa6b15,588003,Replacement MacBook Pro does the same shit as the previous. @115858 needs to figure this shit out. @258943 I bet yours does this too? 😂 #MacBookProProblems,device_hardware_problems,escalate,5
+312da428-a364-482e-b8c1-0069b3c66ee0,631782,": @115858 Siri still places a space before my first word when I dictate, live setting on camera ignores preserve toggle, rotation issues with keyboard... all low hanging fruit that make iOS feel cheap.",ios_update_problems,auto,Keyboard and dictation issues; suitable for automated troubleshooting.
+df21de3a-b22e-4121-9648-68660d9a1f53,457209,"@AppleSupport Oh cool thanks, it’s no longer in my achievements though - you reckon it’ll still pull through within 9 days?",app_or_system_crashes,auto,
+5f19549e-4898-416a-9d0e-16ea91e7bfa5,1645135,Ayo @115858 wtf is this question mark box I keep getting ???,ios_update_problems,auto,
+6eb2e58b-a16d-4945-b964-09e67f8edd5e,1993599,i’m soo mad my phone is not working right i think it has s virus @AppleSupport,app_or_system_crashes,escalate,
+21c6d550-fc62-40ac-91e0-af132423542d,1680809,@115858 Also your “fix” doesn’t work!!!,app_or_system_crashes,escalate,
+f15c7a8b-863c-4a3f-8044-b6ada5a77d46,400377,Is it normal to have an iPhone 7 as fast as an iPhone 4 after you put IOS 11 @AppleSupport ?,app_or_system_crashes,auto,
+9adab499-f56c-4a39-901f-d80cb107a528,2831720,@AppleSupport That’s exactly what I did. Set it up as a new iPhone phone and it still freezes. 😞,app_or_system_crashes,auto,auto-accepted via script
+3cf3c57a-171b-48d3-a1f9-05bd8fc5bae8,1966780,@AppleSupport ios 11 drains battery can you fix this,battery_drain,escalate,auto-accepted via script
+40390f45-7294-4b15-8a10-333dd53b27ef,587095,"@115858 I've a problem, the mac isnt overheat but the fan is on max, not only that it's turn on as soon as i start up the mac and tht it make the mac run reallt slow Went to the genius bar they reset my whole laptop problem solve but when im home the laptop still have the problem",app_or_system_crashes,auto,auto-accepted via script
+12f294e5-8358-401d-b81b-c493c0edb0e7,208582,"@AppleSupport not happy that on ordering it tells me ""signature required for delivery"" and then the shipping email tells me ""no signature""",shipping_store_support,auto,auto-accepted via script
+d3062548-2675-4531-8de8-28d566fedeaf,1535723,"@115858 @117735 hey if you guys wanna help given that it was bought through you since your phone service people won't help, lmk",ios_update_problems,auto,auto-accepted via script
+497cd831-096a-4c97-9a86-202ae36450ba,1281484,@419824 @115858 This happened to me a week or so ago. It seems the update reactivated the Background App Refresh. Once I turned it off it was fine.,ios_update_problems,auto,auto-accepted via script
+ae2e8812-5161-4a9a-95c3-556c954bf6f6,162841,"@AppleSupport my phone isn’t downloading any apps that I haven’t already downloaded before, like it’ll get to the process where it starts to but it never does",app_or_system_crashes,auto,auto-accepted via script
+fc89ccb7-f3a4-4370-9609-480a9b9ba3d0,121531,@AppleSupport My laptop’s doing this again,app_or_system_crashes,auto,auto-accepted via script
+f6e3b014-1538-420f-b665-7ba7ce92f1f1,2705002,@115858 software update plz. I’m fed up with this,ios_update_problems,auto,auto-accepted via script
+1f9aa6fa-0715-4d22-8fd0-afc542ab8c00,2020071,@AppleSupport Thanks I think I figured it out.,app_or_system_crashes,auto,auto-accepted via script
+5019cbb7-e95a-4729-9ec9-10b79302d9d8,2569413,Just gave my I.T virus to my producer. What the hell is going on with our phones??? #iphone @115858 @AppleSupport,app_or_system_crashes,auto,auto-accepted via script
+0a6c7033-7f99-4eb7-8efc-19c58ae32afa,245992,"@AppleSupport my #iphone7’s battary life time has decreased sharply with this #IOS11 , I need to charge it twice daily !!",battery_drain,auto,auto-accepted via script
+1eec2f37-78bd-417a-b97a-6f48affc5a4b,2502125,@AppleSupport I updated to 11.1.2 when the software was released. It still hasn’t helped unfortunately,ios_update_problems,auto,auto-accepted via script
+c217df8a-e2e4-4d54-906d-ed092ad702df,1151930,"@AppleSupport Every time when i use wahtsapp, instagram and Twitter",app_or_system_crashes,auto,auto-accepted via script
+eaf17a91-5c41-4776-9878-33b158537466,1477586,@115858 these new updates are awful. Still glitchy and what is this ➡️ I️,ios_update_problems,auto,auto-accepted via script
+ca44096b-234f-4257-8a1c-0d9d428812ad,1758970,Hey @AppleSupport what’s up with this I️ thing on all my social media,app_or_system_crashes,auto,auto-accepted via script
+99ea5623-82d0-400a-be64-76f3b8b4b4ff,2981642,@AppleSupport still no haptic feedback on iPhone keyboard 📱 after new update. ??? Has this been disabled.,ios_update_problems,auto,auto-accepted via script
+34533b9b-9138-44ae-a089-a59015ff25f3,1761312,@116333 plz do something for iphone 7plus battery. Its getting drained very quickly @AppleSupport @115858 @1542 @16166,battery_drain,auto,auto-accepted via script
+50e59a10-c253-46d9-a0b5-2109e828f2db,1569682,"@115858 over an hour on hold, failing to speak to someone at Southampton store!",shipping_store_support,auto,auto-accepted via script
+c83c8778-c488-4d3f-97f6-b0490b6177d3,1890328,@AppleSupport notifications issue in iOS 11.0.3-N on for phone&apps but banners do not show. Hard reset but still not working. Ideas?,ios_update_problems,auto,auto-accepted via script
+294a7211-2efd-4b54-9405-d52044e1c57a,1659077,@AppleSupport everytime I️ type an “I️” it corrects it to this and I️ can’t stop it??,app_or_system_crashes,auto,auto-accepted via script
+bcbc8c70-b3fd-434f-a4e8-a78dce653586,1760225,@115858 I found a bug in your software. When I flip my settings screen up from the bottom and turn off my WiFi ...,device_hardware_problems,escalate,auto-accepted via script
+26d73750-2704-4f67-b06f-d4c7b91afc63,2053002,@115858 @AppleSupport I tried to update my phone but it won't even start back up.. it was fine before this... why.,ios_update_problems,auto,auto-accepted via script
+b76fc0a1-ed77-4ce8-8984-148e8f3b43e2,1736096,Is this update serious with the “I️” problem @115858,ios_update_problems,auto,auto-accepted via script
+e89ada5c-3a6c-4379-9a97-d3d781bb0b4f,2241906,"@AppleSupport thanks for the new emojis but my phone is still broken please advise. need to make calls, cannot. #iphone #apple #plannedobsolesence #brokeniphone #softwareupdate11",ios_update_problems,escalate,auto-accepted via script
+da0ccb6a-0c0e-491c-843c-d9c5cf285067,1033613,@AppleSupport My iPhone 7 screen has accidentally cracked :( What should I do? Plz help.,app_or_system_crashes,escalate,auto-accepted via script
+a11b2f96-2620-43ea-ac8b-dd806bcfca18,1224353,@AppleSupport @115948 @115858 ooooor at least if one is playing music downloaded there wont be an interruption for either #ThinkAboutIt,apple_music_itunes,auto,auto-accepted via script
+cab0f1d0-68f2-4651-9fec-bfa4e3a827cc,2684308,@AppleSupport How can I fix this.,app_or_system_crashes,escalate,auto-accepted via script
+8ed481ce-e3ee-48c0-9703-469ee42ac629,1957980,@AppleSupport I’ve only noticed it on WhatsApp so far. But it’s been happening since the first iOS11 update,ios_update_problems,auto,auto-accepted via script
+ae4099aa-71d3-42a7-9ea8-db78fe6e079b,880328,Hey @115858 your update has destroyed the life of my phone. What used to be all day is now 3 hrs and dead. #thissux,ios_update_problems,auto,auto-accepted via script
+e1e6754e-883d-4924-8943-fc253cda02de,2208883,Why isn’t the password sync working? Please don’t tell me to log out and in or clean install or something! @AppleSupport,app_or_system_crashes,auto,auto-accepted via script
+70725ecb-17a4-499a-8774-66654044a901,1902794,@AppleSupport iPhone 5S keeps dying on 40%+ while on Snapchat app and 30%+ while on Netflix app. No extreme external temperatures. Why?,app_or_system_crashes,auto,auto-accepted via script
+d89f252e-28e5-4fa6-b3b0-a2a0a9264041,787448,@AppleSupport iPhone 7 Plus. This is the 3rd time I’ve seen it. Restart hasn’t worked. Also saw it with 11.0.1,app_or_system_crashes,auto,auto-accepted via script
+84a02d2b-a6e9-416d-9f06-7e56baabcf33,272918,@115858 @AppleSupport I got this email and it takes you to this site. This is a scam right?,app_or_system_crashes,escalate,auto-accepted via script
+3a079f2e-2433-4443-83ed-27cc2932e4ed,629656,@AppleSupport,app_or_system_crashes,auto,auto-accepted via script
+28e897dc-892e-4b4f-be5e-a23b502d11cf,848087,@321560 @AppleSupport I have an iPad Air 2 so it's def. not that. iOS 11 is a bit odd!,ios_update_problems,auto,auto-accepted via script
+96fbea6c-c116-4069-8b51-c6f1463bfbb5,2350747,"Why is it ok that my iPhone6 worked fine before IOS11, yet now it’s incredibly buggy and slow...constant app crashes. @115858 why have you broken my phone?! It worked fine!",app_or_system_crashes,escalate,auto-accepted via script
+60e6c10e-c70b-487b-abe3-7d7d927daadc,2043342,@AppleSupport Help! Where do I find my account balance for the App Store? Can’t find it since the iOS update...,ios_update_problems,auto,auto-accepted via script
+a6dd9b73-372d-41a9-bc74-7e3fc1c4054e,2516071,"Ever since the new update, my phone has become complete shit @115858",ios_update_problems,escalate,auto-accepted via script
+d78dea94-0d12-486f-b5f3-fa75390faea1,735506,@115858 why does my Bluetooth turn on randomly?,ios_update_problems,auto,auto-accepted via script
+5b832893-5602-4dc7-bc26-926b599590e4,1746810,@115858 @AppleSupport nah bmt fix this glitch,app_or_system_crashes,escalate,auto-accepted via script
+a1eea1af-55d7-448b-aa7d-5f29a00ec27e,2261526,@AppleSupport I use iPhone 6s with iOS 11.1.1.,ios_update_problems,auto,auto-accepted via script
+7777dbba-b603-4581-a025-b8fa17943bbc,2970202,@AppleSupport my phone FREEZES when i play @210685 even after the shitty ass update you guys did fix this,ios_update_problems,escalate,auto-accepted via script
+ea717a2c-47e5-4a23-bdcc-c297bda93792,1617888,@AppleSupport Already tried that and it doesn’t work so.....,app_or_system_crashes,auto,auto-accepted via script
+ca048488-920a-4bab-bb66-fba069675c8f,538737,@115858 has to stop making our phones suck once a new one comes out.,ios_update_problems,auto,auto-accepted via script
+96313920-9a43-4d6a-a35f-60798f15f6db,1579827,@AppleSupport why is my phone changing letters to symbols,app_or_system_crashes,auto,auto-accepted via script
+86c615c8-05cb-4dc0-88a0-054110bf0b38,1577376,@115858 fix my shit please and thank you I️ shouldn’t have to do all those steps. Push out another update please 😊,ios_update_problems,escalate,auto-accepted via script
+93198d24-e218-4544-a682-6c213a90e2ee,514828,@AppleSupport It shows up there but not in my library or in my purchased music,apple_music_itunes,auto,auto-accepted via script
+1c348813-6a87-432d-934f-03c8eb0e3548,2352128,@AppleSupport I could make calls but couldn’t receive. I have spoken with @122326 do not disturb wasn’t on but was still blocking calls. Could it be a bug in iOS 11.1.1?,ios_update_problems,auto,auto-accepted via script
+8dec07d4-532e-482c-8549-6ba9cb836525,2320121,@115858 can y’all fix this stupid ass glitch,keyboard_autocorrect_glitch,escalate,auto-accepted via script
+4bb4ed09-10d7-4f56-89a3-0c8c96bd06ba,2012067,@AppleSupport Yes. Also my ringtones don’t work anymore either.,app_or_system_crashes,auto,auto-accepted via script
+3119f148-0f54-40fc-8783-c03cb6a5fb7c,693985,"@AppleSupport hi, I’d like to know if this faulty is covered under warranty",app_or_system_crashes,auto,auto-accepted via script
+dcb33046-d733-4eaa-8343-e133866adf27,1742610,@115858 ya needa fix this problem with the letter “i” like it’s rlly annoying thx,ios_update_problems,escalate,auto-accepted via script
+c88e649c-f410-47e9-aa4e-782c01a86729,2014835,@115858 @AppleSupport what the hell is going on... why is everyone’s phone doing this now I️ I️ I️ I️ when we type the letter “i”,app_or_system_crashes,auto,auto-accepted via script
+e6008b10-2290-41e6-87c4-f6b885c6e748,1513907,@AppleSupport ok ill try it with my friends headphones tomorrow and see if it's just those that don't work and about a week and half now,app_or_system_crashes,auto,auto-accepted via script
+1fd24fb3-c9d9-478b-a987-9b50458ad339,2922714,WHY DOES AN ALBUM I BOUGHT ON ITUNES KEEP SKIPPING? #frustrated @115858,apple_music_itunes,auto,auto-accepted via script
+95a5e56f-bb56-4d32-845d-829e801fb9b6,2516046,@AppleSupport so the “I” issue is fixed but now when I type “it” autocorrect does this - I.T WHY,app_or_system_crashes,escalate,auto-accepted via script
+35c8807b-986c-4b9e-b326-6cb9c95b80c1,1458835,@115858 Guys you need to fix the I️ glitch it showing up weird. Had to manually fix mine 🙄 I️,keyboard_autocorrect_glitch,escalate,auto-accepted via script
+4105105b-e7b4-404a-998a-db276d2008fa,1709355,@115858 what the fuck,ios_update_problems,escalate,auto-accepted via script
+d9bb1f69-b9ee-4569-bda1-a5a4d3888bec,1234336,@AppleSupport Why does Maps think I live at the wrong end of my road? I have screenshots but don’t want to share publicly…,app_or_system_crashes,auto,auto-accepted via script
+2416b3e7-8282-41a3-ab6b-b782e7a862c1,1223968,"@115858 before I updated my phone to i011 it held a charge almost all day, now it can’t go 1 hour worth of using.... can you explain this?😡😤",battery_drain,auto,auto-accepted via script
+66bb7805-3a73-4c14-b8a6-0d02f3d71c84,2150330,real talk how yall fuckin up the letter “i”? the shits been apart of your products moniker for literally a WHOLE decade @AppleSupport @115858,app_or_system_crashes,escalate,auto-accepted via script
+379a2a7e-d704-49e4-ac15-8268d15ea10a,356798,"#IOS11.0.2: Upgraded and found the phone lagging in all areas. Should not have upgraded. @115858, when r u fixing this?",ios_update_problems,escalate,auto-accepted via script
+540be18e-6baf-4ffb-ab78-f97e4dd1749c,1248744,the iPhone i have to send back to the store won’t let me sign outa my Apple ID to factory reset… @AppleSupport,app_or_system_crashes,auto,auto-accepted via script
+b8dfd8a9-e238-49b6-bf3b-64cada00f367,1636556,What’s up with this question inside of the box @AppleSupport @115858 ???!!!???!!!,app_or_system_crashes,auto,auto-accepted via script
+43b9c770-4f09-45c8-8bbc-0077cf2af19f,2153386,All my texts are from yesterday what’s good ? @AppleSupport,app_or_system_crashes,auto,auto-accepted via script
+58865383-33bf-479f-ac1b-b3c997f4eb83,2439703,@AppleSupport when are you guys gonna bring a fix out for all the iphones you’ve trashed with ios11? Mines keeps crashing,app_or_system_crashes,escalate,auto-accepted via script
+b6ade095-434b-4f41-a2e4-7bb79fdbe75b,773855,Ugh! @115858 #photos #messages #screenshots are a mess!! Please fix it. It WAS fine!!!,device_hardware_problems,escalate,auto-accepted via script
+0ea32f42-d98d-418a-b5f5-9bf9bead26be,2983596,my phone was stolen & this picture showed up on my icloud @AppleSupport,app_or_system_crashes,escalate,auto-accepted via script
+02f5ce48-c5b0-427a-ba01-90dccc8ceb6e,2062150,@AppleSupport Since updating MacOS new LinkedIn contacts and info do not land in Contacts anymore. Accounts are still linked. Any clue?,app_or_system_crashes,auto,auto-accepted via script
+0bd855d6-d5f5-43e3-b127-32cfaf3afd60,740099,@AppleSupport please tell me why my 6S+ turns into a potato when trying to import photos with an apple sd card reader?? #ios11istrash,app_or_system_crashes,auto,auto-accepted via script
+cc25e927-020b-4fcb-a4b9-aac82c18417f,1697337,"Also, @AppleSupport for sure fix the question mark glitch...",app_or_system_crashes,escalate,auto-accepted via script
+d5f2bc7e-20d1-4b16-9125-f9faea25eea2,910538,@AppleSupport It doesn't pause but continues to play.,app_or_system_crashes,auto,auto-accepted via script
+2b63ea28-80fe-40a6-868a-68c553456bf6,2424337,"@AppleSupport good evening, I think my battery is getting low too fast. Can you run a test, please?",battery_drain,auto,auto-accepted via script
+07d428c5-bbcf-49ef-81b9-64b0bf55f743,1977663,What is wrong with my I️ @AppleSupport and my “it” turns into I.T ......what are y’all doing with these phones? I’m bout to max!,app_or_system_crashes,auto,auto-accepted via script
+61f33f37-cdb7-4acc-84b6-1e758d756cf4,1981289,"@AppleSupport Finally updated my watchOS, now every time I glance at my watch (no matter the face), it’s on Stopwatch?!",ios_update_problems,auto,auto-accepted via script
+e36904af-ef54-4b51-96fa-9f7f391d15a1,1806984,"@AppleSupport I WAS excited until I wasn't able to download or listen to the album, same thing that happens to me with Beyonce's Lemonade, album that was released ""a few MONTHS ago"" and I was never able to download after o purchased it on iTunes",apple_music_itunes,auto,auto-accepted via script
+48814450-ca46-4067-9b65-4292efd7ae5e,2364587,"This new update doesn’t let me see the letter I, and has my phone freezing all the time. Fix it 😒, plus it drains my battery 😒. @AppleSupport",battery_drain,escalate,auto-accepted via script
+571b6db5-cfeb-404f-9bea-bb1020629b01,711664,@AppleSupport is this email as bogus as I think it is? @115858,app_or_system_crashes,auto,auto-accepted via script
+0ca2fd18-de00-43f0-8dae-7aade27ca7ad,406620,@AppleSupport Thank you ! I will not erase my iPad Pro to see if the problem is solved ... look more and more like windows your iOS,app_or_system_crashes,auto,auto-accepted via script
+f6ee0233-f49b-4342-9fef-b0d82320949a,566840,Okay that’s weird @AppleSupport how do I enable Pay with the 11.2 update? Seems like the watchOS has no updates like 4.2?,ios_update_problems,auto,auto-accepted via script
+bb81c398-1781-4837-9139-f0fb788b7664,2906738,@AppleSupport hi Apple. I bought a new iPhone 7 yesterday! It already had iOS 11 on it. I do feel however like my battery is dropping quickly despite it being new! What do I do?,battery_drain,auto,auto-accepted via script
+94b7201a-4fad-434c-8f2b-ffee16282618,2041718,You know what I’d like? To have cloud music on without I removing the option to select my playlists thanks @AppleSupport I don’t have WiFi at work.,apple_music_itunes,auto,auto-accepted via script
+abf5ac67-f285-45e4-bc94-20fad2c01304,46837,@115858 I Found an iPad on the train how can I return it to its rightful owner?,ios_update_problems,auto,auto-accepted via script
+f4f2e610-5200-476d-a436-c3bed21d3732,1881894,"@162401 @AppleSupport I bought Minecraft ages ago in the App Store. It doesn’t register as purchased anymore. Help, please?",shipping_store_support,auto,auto-accepted via script
+6a2f2caf-9222-4e79-88df-c01ee2612b22,1920540,The irony of having a dead iPhone is that now I have no way to get directions to the @115858 store. #justmillenialproblems #TeamAndroid,shipping_store_support,auto,auto-accepted via script
+128e5f61-bf2f-4fec-9d15-2ce9d03229ff,1039545,@115858 what the fuck,ios_update_problems,escalate,auto-accepted via script
+b431a97f-b8ad-46d3-8132-0f16b08176c4,952589,@AppleSupport having trouble to connect with I tunes in my new iPhone,app_or_system_crashes,auto,auto-accepted via script
+4cfa55f1-519c-47de-bd6b-031ac1eaabaa,92846,"@AppleSupport why this always happen? Pls fix it, always need to restart my iPhone to get it back working",app_or_system_crashes,escalate,auto-accepted via script
+4e51ccc9-6163-40aa-942f-8e86a4bb925a,446484,@AppleSupport I'm unable to log into my Apple ID on my Mac,apple_music_itunes,auto,auto-accepted via script
+0e748663-fd68-4c99-b53c-24b59dc13d56,1868259,Hey @AppleSupport is there any way to uninstall an iOS update? My phone has been going crazy since I installed 11.0.3. It sucks so bad 😣😣😣😣,ios_update_problems,auto,auto-accepted via script
+ffa315ce-f548-449e-baf7-683bd4fc90ca,771383,@AppleSupport You got it-putting that on tomorrow’s docket,app_or_system_crashes,auto,auto-accepted via script
+5c643cba-8140-40c1-917f-25f23de3f7e4,2134852,"@AppleSupport I deleted the calendar app on my iPhone, which deleted it from my Apple Watch. I redone loaded Calendar on my iPhone, it’s showing up on my Apple Watch but doesn’t launch",app_or_system_crashes,auto,auto-accepted via script
+7a0a4316-3b6c-46cb-a65a-551754ed5a3e,1573721,"@AppleSupport It shows the white screen with the Apple on it, it loads about a third of the way and then shuts off",app_or_system_crashes,auto,auto-accepted via script
+ff967139-cdee-4d90-a42a-0fa2878fbc1f,1974095,Having to go into my contacts to text somebody thanks to the new iOS update having hella bugs.. #GrindsMyGears @115858,ios_update_problems,auto,auto-accepted via script
+f3fd68e6-4c47-4a0e-9c96-3b55c7ddf3a2,523056,"@AppleSupport I erased Apple watch from my icloud, new user is unable to register pair apple watch, please help.",apple_music_itunes,auto,auto-accepted via script
+69331841-a250-4668-abb7-2ad74b5ee154,858926,"Uh, hey @AppleSupport my iphone 8 plus won't turn on. I plugged it in when I went to bed and I can't get it to turn on now. -______-",app_or_system_crashes,auto,auto-accepted via script
+a4d39a2f-aa51-40da-b36e-79923cb9558d,1656127,I AM FED UP OF SEEING THESE EXCLAMATION POINTS AND BOXED QUESTION MARKS @AppleSupport I need this fixedddd!!!!!!,app_or_system_crashes,escalate,auto-accepted via script
+68535d56-a876-4904-a24c-f084ce701315,1918930,Unable to use Apple Music after purchasing Apple Music Plan @AppleSupport @115858 @116333,apple_music_itunes,auto,auto-accepted via script
+e3d0339e-428f-4039-826f-e1d3c597c8f6,1863632,Dear @115858 please FIX the battery issue on iOS 11 in the next update. Thank you!,battery_drain,escalate,auto-accepted via script
+facfcee7-f9cf-424a-b4f1-721a5e17ac9b,2081620,Is anyone else having issues with their iPhone freezing and acting weird since the most recent update? (11.0.3) @AppleSupport,ios_update_problems,auto,auto-accepted via script
+cfc87596-1c79-40d6-8def-692247b055f0,1788673,"@AppleSupport why has the latest iOS update absolutely destroyed my iPhone 6 Plus? The phone is now too slow for basic tasks, Poor",ios_update_problems,auto,auto-accepted via script
+a2537e60-7453-469e-8d04-7a12c4d7ab85,118115,@AppleSupport IOS 11.1.1,ios_update_problems,auto,auto-accepted via script
+062f8ea3-d66d-4dd6-81a9-b5407b3198fc,2627747,I️ updated my phone so the fact that I️ keep getting the question mark box is pissing me off @115858 stop trying to force me to get the x,ios_update_problems,auto,auto-accepted via script
+d17a2457-4ce8-4301-9cf1-d6b055e5ebdc,868194,this newest update still hasn’t fixed the issue that MY PHONE DOESNT RING. @115858,ios_update_problems,escalate,auto-accepted via script
+c3e7e030-83ce-40b5-a72a-925b4da13491,2005161,What’s up with the i on my phone lol y’all just gonna force me to update huh @AppleSupport,ios_update_problems,auto,auto-accepted via script
+9946350d-a4e1-4105-b426-3b2ca68ca489,694455,@AppleSupport I can’t find anywhere on there that’s going to help me!!,app_or_system_crashes,auto,auto-accepted via script
+415cca24-7ae3-4ef6-b29b-3cf3fad3de73,1211215,@AppleSupport The problem burning up in my pocket by the Touch ID/Home button is also not working.,app_or_system_crashes,auto,auto-accepted via script
+e58d7a7f-227b-4de6-916f-b2f71b638049,2924649,@AppleSupport Yes,app_or_system_crashes,auto,auto-accepted via script
+8aff4c5f-6fef-4d92-b457-5c257e93acb4,1875702,@AppleSupport Thanks,app_or_system_crashes,auto,auto-accepted via script
+60b2b964-60ca-4812-9dd2-58a7c85a4db1,1357318,@AppleSupport Why can't I get through to anyone on chat or phone?!,app_or_system_crashes,auto,auto-accepted via script
+b91176db-2dc3-4aab-9fcc-be0c7f248483,2642594,Legit question I️ need a legit answer to @AppleSupport- why is my #iPhone randomly today now autocorrecting the word “I️” to this?,app_or_system_crashes,auto,auto-accepted via script
+8742ad3c-0a63-438f-b42b-9b686c647f9f,2038076,Somebody really ate the whole apple this time eh @AppleSupport my whole phone messed up.,app_or_system_crashes,auto,auto-accepted via script
+5b9609bc-cd7c-403b-8d74-0bf67bbd822b,1376104,"@116333 Tim, both my iPhones (7 & 6-plus) were hacked. It's major; I thought they were secure.",app_or_system_crashes,auto,auto-accepted via script
+a21a230c-9d67-4a16-9361-9a88a7686e12,39682,Does anyone EVER get Apple’s ‘reading list’ to work offline in Safari? 🙄 What a load of old 💩. Any alternatives that work? @AppleSupport,app_or_system_crashes,auto,auto-accepted via script
+fa030b68-5498-4a20-be89-81c5977e2def,902767,@115858 PLEASE FIX MY “I” key! Please stop making it turn I️ to symbols. I’m really over this ....,keyboard_autocorrect_glitch,escalate,auto-accepted via script
+7a9055d7-2835-43d5-82cc-3212c057b4e1,2615329,@AppleSupport The beautiful #iOS11 App Store... all jumbled up on an #iPhone7. #iOS11Fail #AppleFail #MoreProblems: can’t get Live photos to ever turn off. And now my ear constantly hits the numbers during a call triggering a tone. On 11.1.1 #annoyed,shipping_store_support,auto,auto-accepted via script
+0539ed83-b2d9-4294-b24b-ad543cb86c47,2686821,@115858 what the fuck?? I forgot my itunes password and you email to say you will call me in 14 days to help me reset it?,apple_music_itunes,escalate,auto-accepted via script
+c1dd1665-08ca-4e44-ab9f-f77d1e37f56a,2302311,ios 11 wrecked my phone and i have no recourse or way to fix it thanks a lot @115858,ios_update_problems,escalate,auto-accepted via script
+ed6bd1e6-5034-449b-8d1f-8418e21bee57,323004,hey @115858 I bought my iPhone 8 a week ago and my phone has died overnight while charged at 50% two nights in a row 😶😶,battery_drain,auto,auto-accepted via script
+899978de-d5f4-44bd-ae8c-9b0ddd1ec9a8,2037053,@AppleSupport Ive had this freaking 8plus for alittle over a MONTH and its already slow and glitchy? makes no sense to me.,app_or_system_crashes,auto,auto-accepted via script
+b0d15a79-40fd-48c5-893f-a0e905ba49fc,2295872,@AppleSupport oh ok. Thanks!,app_or_system_crashes,auto,auto-accepted via script
+96a5cb5a-fe47-4749-b07e-1f588326fa69,2853844,@AppleSupport help me out,app_or_system_crashes,auto,auto-accepted via script
+dd093435-b425-4bbe-a1a4-914e2ccd6b16,1218398,Why?? I'm connected to WiFi and I tried on my mobile data... Wtf is wrong with @AppleSupport??,app_or_system_crashes,auto,auto-accepted via script
+d4bf6d92-653f-4f76-a1df-0e0514a634ea,2906796,Hey @AppleSupport notice a problem? The time at the top & the time on the clock don’t match.,app_or_system_crashes,auto,auto-accepted via script
+f3f5258c-52e1-4955-afbc-508676d42771,1701970,.@AppleSupport make it stoppppp,app_or_system_crashes,auto,auto-accepted via script
+d893dbb4-b67f-4bee-9707-b49e79139734,563048,@AppleSupport my 5th gen iPod will not play my music. It says the item is unavailable. How do I get my music to play?,apple_music_itunes,auto,auto-accepted via script
+b6c2bc62-b446-44c1-b5a5-3cae1d7291a1,1225844,This new update sucks why is it so slow @115858,ios_update_problems,auto,auto-accepted via script
+50b33b5c-feeb-4252-9917-a0ce9c0f2888,334145,@115858 iso 11.0.2 is terrible drains the hell out of my phone. Within 15mins it’s down 50%. Bloody annoyed 😩,battery_drain,auto,auto-accepted via script
+bbca82d5-e6b3-45ba-b332-3020221115b2,1929658,@AppleSupport iOS 11.0.3 has made my phone glitchy and loses battery so quick :-(,battery_drain,escalate,auto-accepted via script
+3b717bdd-314f-4c9f-aff8-c00fc0978e44,300118,Iphone 6 heats and battery draining very fast after upgrading to ios 11. Is there any fix for this? @115858 @AppleSupport @2310 @115858,battery_drain,escalate,auto-accepted via script
+95325fc8-75e5-4609-b43d-b12db0e681b9,1148411,The iOS 11 is causing my iphone 6s+’s battery to drain faster. I hate it. @AppleSupport,battery_drain,auto,auto-accepted via script
+2c9ce1f2-4ca8-4c11-969d-8bd67ad05b7f,2148045,@AppleSupport iPhone 7. No happens in SoundCloud also,app_or_system_crashes,auto,auto-accepted via script
+9b382f34-ce66-4195-a638-9f0fb68b424b,1754055,Facts! @AppleSupport @115858 this update messed up my phone. I️ can’t type the word “i “ with out I️ showing up,ios_update_problems,auto,auto-accepted via script
+096ca15d-483c-47c6-9dc1-0cb553e7da99,1655595,@AppleSupport Like let me type you a sentence I️ love when my iPhone glitches,app_or_system_crashes,auto,auto-accepted via script
+08255d60-a37b-4bdb-bf6c-062497268c23,2195165,@AppleSupport Also a gap at the top after it was replaced.,app_or_system_crashes,auto,auto-accepted via script
+3fe5c22f-a396-4fe6-beb5-327a4f59b64c,1756339,"@AppleSupport hi, why can’t I see PDF files that I received on my email or my iPhone SE?",app_or_system_crashes,auto,auto-accepted via script
+4906761c-3efa-44b5-9958-e9ee13ef7667,1270294,UGHHHH @115858 WHAT IS EVEN THIS. Imagine trying to navigate hieroglyphics at 2am when you wake up after your phone ambush-updates you.,ios_update_problems,auto,auto-accepted via script
+d7703d28-36ab-4bb7-897d-844c68324de9,2804357,@AppleSupport help!! I updated my MacBook Pro mid 2012 to High Sierra last night and it’s super super slow. I need it for school (finals week coming) I’m so upset. :(,ios_update_problems,auto,auto-accepted via script
+d3e6fb60-74eb-4a86-86e4-aaef31b5536e,1717607,@AppleSupport Yes because I have tried changing it with an adapter and the battery depleted,battery_drain,auto,auto-accepted via script
+8417889b-8a9e-4a41-8ad0-331b4eeb5c87,2406565,@AppleSupport I don’t think that’s the problem...,app_or_system_crashes,auto,auto-accepted via script
+269be40c-c94d-4faa-ab53-66963ca7e9cb,881179,"@AppleSupport iCloud backup's been enabled since I got the📱 I'm on 11.0.3. I've tried 🔄 network settings, cycling power, no change. Still climbing.",app_or_system_crashes,auto,auto-accepted via script
+6e6d079d-7608-4d84-b744-29625339812d,40541,"@AppleSupport is this normal? When I️ tap that symbol, it defaults to “I️”",app_or_system_crashes,auto,auto-accepted via script
+80578313-26ea-4970-b7d5-7d04f14a01ef,1498625,@AppleSupport still no fix for the “I” issue,app_or_system_crashes,escalate,auto-accepted via script
+45ea62f5-1dba-4d1d-b998-2c5193ea745c,1238191,@AppleSupport It works on WiFi but when I clearly have cell signal it won’t work,app_or_system_crashes,auto,auto-accepted via script
+7fa77145-c750-4196-9581-6443b424e915,774254,@AppleSupport Yes I have and also have problems when I’m in. Web page and I press the bottom to close exit and got to another app,apple_music_itunes,auto,auto-accepted via script
+5945d7f1-53db-45f6-82e3-4104a25be614,1928160,"@AppleSupport Getting loads of spam emails disguised as Apple. Very hard to tell what's genuine, how can I be sure?",app_or_system_crashes,auto,auto-accepted via script
+4a11559f-fe0e-40a3-863a-820ad282c10a,905233,@AppleSupport @115858 why can’t sierra be downloaded now that high sierra was released?,app_or_system_crashes,auto,auto-accepted via script
+0d6ad412-0653-4178-b496-2c3794246aba,2303690,@AppleSupport I have an old MacBook Air and I'm trying to update the OS but each time I input the username and password it asks for a code. I get the code but there is no where to input it.,ios_update_problems,auto,auto-accepted via script
+b5951acd-ec2f-4a43-9cce-32b49b43f27e,2095806,"Thanks, @AppleSupport! You’re a real doll.",app_or_system_crashes,auto,auto-accepted via script
+e5664a40-9365-4123-896f-ca65b665a4b7,2130262,Yo I just lost 20% of my battery life in 2 minutes because I updated 5 apps. Fix your shit dude @115858,battery_drain,escalate,auto-accepted via script
+5edef395-6f50-4356-9cae-775d3feac884,266452,"@AppleSupport No, don’t have any other. Also when this happen, my headphones won’t allow skipping songs and volume control",app_or_system_crashes,auto,auto-accepted via script
+57f0a044-9779-412c-8ae5-ceb0c1745da1,2026283,I updated my phone & im still seeing boxes. @115858 really got me fucked up & I’m about to take my ass back to @1647.,ios_update_problems,escalate,auto-accepted via script
+be2ce521-874d-4f9f-a83b-65053f5c0309,152837,Hey @AppleSupport this seems like a bug in latest iOS.,app_or_system_crashes,auto,auto-accepted via script
+b052ca8e-169d-46a2-9319-76bd596cec19,295943,@AppleSupport iPhone 6 se iOS 11.0.2 but I’m gonna update to the new one rn,ios_update_problems,auto,auto-accepted via script
+7a968502-3f51-408a-b8e6-6db2703aade6,954241,@AppleSupport Ahhhh yess I’m eligible! Thank you so much,app_or_system_crashes,auto,auto-accepted via script
+4f24a85a-715a-4251-a2f0-1c130da6bdbb,1639198,When you try to type “i” but it shows up as “! [A]” @AppleSupport what’s up,app_or_system_crashes,auto,auto-accepted via script
+73a18a90-d44c-45e3-be88-294671244c3b,1877420,@AppleSupport 2 apps on my iPhone 6s running the latest version of iOS 11 aren’t updating. Have been waiting a few hours now. Please advise.,ios_update_problems,auto,auto-accepted via script
+66904184-9135-40d0-9855-1f0c24f31ecf,2278017,"@AppleSupport Thanks, the problem with the “I” appears to be fixed.",app_or_system_crashes,escalate,auto-accepted via script
+e81deada-7676-4f31-870b-89b4c4f28da2,613005,@AppleSupport Still experiencing the issue after the update!,ios_update_problems,auto,auto-accepted via script
+8c8bf708-b53b-448d-94ed-c1b640c84da6,1766740,@AppleSupport Helpppp all my texts just vanished ?,app_or_system_crashes,auto,auto-accepted via script
+e97b8bf7-c65b-426f-96da-450b9a3ef02e,2210665,Anyone else’s battery life awful on iOS 11? @AppleSupport,battery_drain,auto,auto-accepted via script
+4ea9816d-9d2d-457d-8783-d81088b45a67,2914647,"@AppleSupport 10.12.6, and it persists after reboots and signing out and back into iMessage.",app_or_system_crashes,auto,auto-accepted via script
+c0cc34a1-aae2-4cd7-ba29-d5d58ec88d3c,1332731,@AppleSupport since I updated to ios11 my (new) 7plus keeps freezing and not responding. Lost count of the amount of resets I’ve had to do!,ios_update_problems,auto,auto-accepted via script
+d2085011-0817-4561-b458-d54aac3b8773,2346128,@AppleSupport do you know how many people lost there phone data because of your software updateMy phone still not working give me solution,ios_update_problems,auto,auto-accepted via script
+1f885021-2e5d-4565-8170-ff12e76121f7,1569674,@AppleSupport the issue no :100316313800 has not been solved for more than 1 month and apple cannot give any further information!,app_or_system_crashes,auto,auto-accepted via script
+72d69054-f991-4850-b45e-34aa53a45528,2207708,"@AppleSupport Yes, I’ve done both. It’s been saying about 1 hour remaining for the past 2 hours.",app_or_system_crashes,auto,auto-accepted via script
+332c3945-44c2-4a0b-bdd3-b31b1e500b2d,2280270,"This is seriously a thing? Even in my predictive text? Get it together,@AppleSupport",app_or_system_crashes,auto,auto-accepted via script
+e074533d-7237-4135-8c74-59f2cf27352c,4890,"@AppleSupport whenever I try to see the photos that I’ve just taken my #iphone6 shows me this. I’ve reset it, I’ve restored it... help?",app_or_system_crashes,auto,auto-accepted via script
+a4796571-dfa2-444f-b0d3-4a491dd33afa,255803,@AppleSupport you guys have killed the battery life on my 6S Plus. Thanks .,battery_drain,auto,auto-accepted via script
+3e648101-6ec9-445b-a2c9-5f23de792da9,2780603,Hi @AppleSupport! I wanted to visit an Apple Store tonight to purchase a new phone/transfer contents of old phone. Do I need to make an appointment for that?,shipping_store_support,auto,auto-accepted via script
+c7023fa4-06a4-44f8-8f72-85b68ea42bba,1913042,"@AppleSupport ...not really! Bar charged ok (however no black screen + white bar like usual) but then screen black and colored raws appear slowly until login window appeared, now is like this (I think it should be centred) now I’m going to enter and reboot.",battery_drain,auto,auto-accepted via script
+0d54bc6b-160a-46aa-b617-f935d7d14eba,1877177,@AppleSupport @560353 Battery life decreased significantly here too since update. I can watch it dropping 😩,battery_drain,auto,auto-accepted via script
+224add87-873a-4b68-b5b6-251b8758d827,2920042,@AppleSupport I can’t screenshot it cause it’s there for a second & ive since cleared my iCloud because it’s been so annoying.Its too late I’m already mad,app_or_system_crashes,escalate,auto-accepted via script
+ba014413-1940-466f-8d02-7f22952f91b2,358950,@AppleSupport Please help my iPhone 5S w/ iOS 11.0.2 could not be activated after erased all contents & settings via settings reset menu,ios_update_problems,auto,auto-accepted via script
+cd851c09-81b9-46db-adc9-35ac56045f4b,1178925,Since this new iPhone update my phone is nothing but a piece a crap. Never had I had a phone so slow skinny the simplest tasks @AppleSupport,ios_update_problems,auto,auto-accepted via script
+7d101ef4-0bed-49c1-8a93-694e87e280e9,2220892,@AppleSupport IPhone 7,app_or_system_crashes,auto,auto-accepted via script
+b868a86a-af81-4c7b-b5d5-b2b53a51d358,1643230,@AppleSupport why is it that Photos is always trying to upload the whole library to iCloud? I’ve verified all pics are present in the cloud.,app_or_system_crashes,auto,auto-accepted via script
+f07f4df4-92ff-44ed-908b-168fc918891b,2476128,@115858 Pls fix this -> I️ it’s getting really annoying thx bye,ios_update_problems,escalate,auto-accepted via script
+d00ac889-5b2d-44df-84e9-887cc58f8381,656269,@AppleSupport They are not on the same iOS one is 11.0.2 and the other is 11.1.2 I am updating the iPhone 8plus now and Ithink this should fix the problem so both are on the same software version,app_or_system_crashes,escalate,auto-accepted via script
+2c93f8c4-43b8-48c9-8add-beafbe3b3513,1807481,@AppleSupport tweeting from a free WiFi kiosk to let y’all know this damn phone doesn’t work bye,app_or_system_crashes,auto,auto-accepted via script
+a47c15ac-ef2e-4872-b3c8-3b7896c6193b,856649,"@AppleSupport Take 3 hours to charge my iPhone , never happen before . When I had iPhone 5 only 30 min or 1 hour no more time. When I bought this only 1h",battery_drain,auto,auto-accepted via script
+8c1a93da-14d6-4d4b-9b50-bab8880755d1,1984653,"@115858 I️ downloaded the new update and now a bunch of random question marks and boxes come up when I️ try to write certain things, wtf",ios_update_problems,auto,auto-accepted via script
+8c090f14-f1c3-4d2b-ac99-6f196236f814,1704625,Hey @115858 what is up with this “I️” glitch where it looks like “A ?” Very annoying because I️ talk about myself plenty,keyboard_autocorrect_glitch,auto,auto-accepted via script
+25b480ee-24c4-4555-8d51-302f9895d8cc,2691858,Thanks @115858 for deleting all my numbers files from all my devices and the cloud with the latest update 🤬,ios_update_problems,auto,auto-accepted via script
+0287f349-468f-433c-8cd6-b27716fa0e34,2864861,@115858 FIX THIS FUCKING UPDATE OR JUST GET RID OF THE WHOLE THING!,ios_update_problems,escalate,auto-accepted via script
+9b4166c1-12f4-4212-bfc5-a99c4983c702,484410,"@AppleSupport I have an Airplay problem, any ideas? (whole thread)",app_or_system_crashes,auto,auto-accepted via script
+3bca5493-89a6-480e-a90e-e03f465f77f0,667096,"My phone dies like 10x a day, fix this @115858",ios_update_problems,escalate,auto-accepted via script
+1f0ad2ee-7a5d-49d6-be4f-3c643137cf1b,689396,@AppleSupport since the last 2 updates the battery on my 6s drains within an hour .current update 11.1.2 has not fixed either any ideas,battery_drain,escalate,auto-accepted via script
+54669c55-0aee-4190-981c-310b41e0deda,427394,"@AppleSupport And every morning when I wake up my phone, my Bluetooth is turned on. I never keep my Bluetooth on unless I need to use it",app_or_system_crashes,auto,auto-accepted via script
+53efcf0a-978b-473c-903d-b95dbf1a54e0,1850897,"Hey @115858 fix #ios11 my #iPhone7Plus battery dies quicker now, phone heats up more, problems with Apple Pay, app crashing etc.",battery_drain,escalate,auto-accepted via script
+950f1b6c-0a7c-4645-a604-c1c76c3d78e1,983008,@AppleSupport guys I’ve had this iPad Pro 6 weeks and the screen has bowed out - very disappointing,app_or_system_crashes,auto,auto-accepted via script
+bb1ea099-a1bf-4b22-a4ed-5804c04cdd91,2730390,@AppleSupport Yes my contacts are synced and i am using ios 11.1.2,ios_update_problems,auto,auto-accepted via script
