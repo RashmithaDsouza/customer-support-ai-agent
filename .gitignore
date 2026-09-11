@@ -26,3 +26,6 @@ Thumbs.db
 .env
 
 data/raw/twcs.csv
+
+.venv/
+data/evaluation/failure_analysis.csv
