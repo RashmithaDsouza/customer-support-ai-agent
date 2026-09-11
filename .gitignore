@@ -1,4 +1,28 @@
+# Virtual environment
 .venv/
+venv/
+env/
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
 .pytest_cache/
+*.egg-info/
+
+# Large data files
+data/raw/
+data/evaluation/failure_analysis.csv
+*.csv.gz
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+data/raw/twcs.csv
