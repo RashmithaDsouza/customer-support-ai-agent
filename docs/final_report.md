@@ -1,8 +1,8 @@
-# Customer Support AI Agent: Final Evaluation & Engineering Report
+# Customer Support AI Agent:  Report
 
 ## 1. Problem Framing
 We built an end-to-end customer support AI agent for **AppleSupport**. The agent is designed to automatically ingest real, messy Twitter inquiries and perform three critical actions:
-1. **Intent Classification**: Map the open-ended text into one of 8 distinct categories.
+1. **Intent Classification**git branch -: Map the open-ended text into one of 8 distinct categories.
 2. **Historically Grounded Reply Generation**: Draft a response grounded entirely in historical precedent, ensuring the bot does not invent fake return policies, technical steps, or unrelated apologies.
 3. **Escalation**: Route the conversation to a human if the topic is inherently high-risk or the retrieved context isn't sufficient.
 
