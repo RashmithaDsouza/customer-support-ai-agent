@@ -1,0 +1,32 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "venv",
+    "pycache",
+    "pytest",
+    "twcs",
+    "dotenv",
+    "tfidf",
+    "Tfidf",
+    "vectorizer",
+    "Vectorizer",
+    "preds",
+    "fscore",
+    "kmeans",
+    "interp",
+    "subsampled",
+    "Subsampling",
+    "Groundedness",
+    "Kaggle",
+    "thoughtvector",
+    "iforgot",
+    "everytime",
+    "isnt"
+  ],
+  "ignorePaths": [
+    "node_modules",
+    ".git",
+    "*.lock"
+  ]
+}
