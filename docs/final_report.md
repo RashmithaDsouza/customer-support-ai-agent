@@ -2,7 +2,7 @@
 
 ## 1. Problem Framing
 We built an end-to-end customer support AI agent for **AppleSupport**. The agent is designed to automatically ingest real, messy Twitter inquiries and perform three critical actions:
-1. **Intent Classification**git branch -: Map the open-ended text into one of 8 distinct categories.
+1. **Intent Classification**: Map the open-ended text into one of 8 distinct categories.
 2. **Historically Grounded Reply Generation**: Draft a response grounded entirely in historical precedent, ensuring the bot does not invent fake return policies, technical steps, or unrelated apologies.
 3. **Escalation**: Route the conversation to a human if the topic is inherently high-risk or the retrieved context isn't sufficient.
 
@@ -31,7 +31,37 @@ The taxonomy was discovered natively from the data distribution:
 - **Generator (`generate_reply.py`)**: RAG-based LLM generation strictly bounded by the retrieved support context.
 - **Escalator (`escalate.py`)**: A hybrid deterministic-rule (keywords) and LLM-heuristic module to decide auto-resolution vs. escalation.
 
-## 5. Evaluation Methodology & Baselines
+## 5. Sample Output
+
+The following examples show real customer messages from the evaluation set and the escalation decisions produced by the pipeline. Intent labels reflect the gold labels from `evaluation_set.csv`; escalation decisions and reasons reflect what `escalate.py` produces for those inputs.
+
+**Example 1 — Keyword-triggered escalation:**
+```
+Input:   "my phone was stolen & this picture showed up on my icloud @AppleSupport"
+Intent:  app_or_system_crashes
+Decision: escalate
+Reason:  Rule match: High-risk or sensitive keywords detected.
+```
+
+**Example 2 — Intent-triggered escalation:**
+```
+Input:   "@AppleSupport I Found an iPad on the train how can I return it to its rightful owner?"
+Intent:  account_icloud_security (gold label: ios_update_problems)
+Decision: escalate
+Reason:  Rule match: Intent 'account_icloud_security' usually requires human verification or hardware support.
+```
+
+**Example 3 — Standard inquiry routed to auto-reply:**
+```
+Input:   "@AppleSupport ios 11 drains battery can you fix this"
+Intent:  battery_drain
+Decision: auto
+Reason:  Standard inquiry handled by mock.
+```
+
+> *Note: Examples 1 and 3 are drawn from `evaluation_set.csv` rows matched to `agent_predictions.csv`. Reasons reflect the exact string outputs from `escalate.py` for those code paths. Example 2 illustrates the intent-based escalation rule path, which the mock classifier cannot reach (it always falls back to `battery_drain`); the input shown is from the evaluation set.*
+
+## 6. Evaluation Methodology & Baselines
 We evaluate strictly on the 200 labeled examples using deterministic **5-Fold Stratified Out-Of-Fold (OOF)** cross-validation to ensure zero label leakage.
 
 We compared the Agent against:
@@ -40,7 +70,9 @@ We compared the Agent against:
 - **Reply Evaluator**: Uses an LLM-as-a-judge rubric scoring on Groundedness, Correctness, Tone, Actionability, and Factual Consistency.
 - **Escalation Logic**: Rule-only keyword checking versus the AI's hybrid system.
 
-## 6. Results Summary
+## 7. Results Summary
+
+**Note: The 'AI Agent' column below reflects Mock LLM Mode (no live API calls) and is not representative of real model performance — see Section 8 for full explanation.**
 
 | Metric | Majority Baseline | TF-IDF Baseline | AI Agent (Mock LLM Mode) |
 |---|---|---|---|
@@ -57,14 +89,14 @@ We compared the Agent against:
 - **Tone**: 4.00/5.0
 - **Groundedness**: 3.00/5.0
 
-## 7. What is misleading about my headline number?
+## 8. What is misleading about my headline number?
 The headline numbers, while comprehensive, are subject to significant caveats:
 1. **Mock Mode Deflation**: The AI Agent's 11% accuracy does not reflect real LLM performance (which would likely easily exceed the TF-IDF's 67%). It reflects our robust mock-mode fallback mechanism successfully preventing crashes during offline execution.
 2. **Sample Size Constraints**: Evaluating on 200 examples means 1 misclassified example swings accuracy by 0.5%. Certain minority classes in the 8-class taxonomy have as few as 3 examples, making Macro-F1 highly unstable.
 3. **Single Brand Bias**: The retrieval embeddings are tuned implicitly on AppleSupport's specific dialect. These metrics will not directly translate to a brand like SpotifyCares.
 4. **LLM as Judge**: While efficient, LLMs inherently possess a "lenient grading" bias. True performance quality ultimately requires human parity measurement, for which we have built the `label_judge_agreement.py` CLI script.
 
-## 8. Top 5 Failure Modes
+## 9. Top 5 Failure Modes
 *(Extracted from `failure_analysis.csv`)*
 1. **Intent Misclassification**: Ambiguous language like "My phone is acting weird" fails keyword logic and confuses the fallback mock. *Improvement: Better few-shot examples for edge cases.*
 2. **Escalation False Positives**: The rule-based escalation triggers heavily on "stolen" or "hacked", which occasionally are false positives (e.g., "My stolen phone was returned"). *Improvement: Allow the LLM context-aware heuristic to override keywords if context dictates.*
@@ -72,7 +104,7 @@ The headline numbers, while comprehensive, are subject to significant caveats:
 4. **Ungrounded Hallucinations**: In rare instances, the generative layer outputs standard troubleshooting steps that weren't in the retrieved context.
 5. **Taxonomy Overlap**: `device_hardware_problems` vs `battery_drain`. Often, battery degradation is technically hardware, causing ground-truth labeling disagreements.
 
-## 9. Decision Log
+## 10. Decision Log
 1. **Decision**: Built a custom `.env` parser and zero-dependency `urllib` HTTP LLM client.
    - **Reason**: The execution environment strictly blocked `pip install` network requests for `openai` or `requests`.
    - **Tradeoff**: Harder to maintain over time, but guarantees 100% immediate execution without environment configuration errors.
@@ -88,7 +120,7 @@ The headline numbers, while comprehensive, are subject to significant caveats:
 5. **Decision**: Used `TfidfVectorizer` (max features=1000) over simpler Word2Vec.
    - **Reason**: TF-IDF provides deterministic, explainable word weights which is crucial for a classical baseline comparison against complex deep neural networks.
 
-## 10. Reproduction
+## 11. Reproduction
 To reproduce this exact report and metrics using the subsampled environment:
 ```powershell
 .venv\Scripts\activate
