@@ -151,63 +151,27 @@ Evaluated on 200 hand-labelled examples using 5-fold stratified OOF cross-valida
 
 ## Project Structure
 
-```
+```text
 customer-support-agent/
 │
 ├── data/
-│   ├── raw/                         # Raw TWCS corpus (not committed — too large)
-│   ├── processed/
-│   │   ├── apple_support_pairs.csv       # All matched customer-reply pairs
-│   │   ├── apple_support_sample.csv      # 8,000-pair retrieval corpus
-│   │   ├── apple_support_sample_embeddings.npy  # Cached embeddings for fast retrieval
-│   │   ├── intent_definitions.json       # Canonical intent names + descriptions
-│   │   └── intent_clusters.csv           # KMeans clustering output
-│   └── evaluation/
-│       ├── evaluation_set.csv            # 200 hand-labelled gold examples
-│       ├── baseline_predictions.csv      # Majority + TF-IDF predictions
-│       ├── agent_predictions.csv         # AI agent predictions
-│       └── reply_judge_results.csv       # LLM-as-judge scores per example
+│   ├── raw/                        ← TWCS corpus (not committed — too large)
+│   ├── processed/                  ← retrieval corpus, embeddings cache, intent taxonomy
+│   └── evaluation/                 ← 200-example gold set, model predictions, judge scores
 │
 ├── src/
-│   ├── agent/
-│   │   ├── run_agent.py             # Main entry point — runs the full pipeline
-│   │   ├── classify.py              # LLM-based intent classifier
-│   │   ├── retrieve.py              # Dense retrieval via sentence embeddings
-│   │   ├── generate_reply.py        # RAG-based reply generator
-│   │   ├── escalate.py              # Hybrid rule + LLM escalation decision
-│   │   └── llm_client.py            # Zero-dependency OpenAI-compatible LLM client
-│   ├── baselines/
-│   │   ├── majority_baseline.py     # Predicts most frequent class in training fold
-│   │   ├── tfidf_baseline.py        # TF-IDF + Logistic Regression classifier
-│   │   ├── canned_reply.py          # Rule-based canned replies by intent
-│   │   └── rule_escalation.py       # Keyword-only escalation baseline
-│   ├── data_prep/
-│   │   ├── prepare_data.py          # Builds customer-reply pairs from raw TWCS data
-│   │   ├── discover_intents.py      # Embeds + KMeans clusters to discover intent taxonomy
-│   │   ├── label_intents.py         # LLM-assisted intent labelling for evaluation set
-│   │   └── create_evaluation_set.py # Builds the 200-example gold evaluation set
-│   └── metrics/
-│       ├── reply_judge.py           # LLM-as-judge scoring (5 dimensions)
-│       ├── intent_metrics.py        # Accuracy + Macro F1 for intent classification
-│       ├── escalation_metrics.py    # Precision + Recall for escalation decisions
-│       ├── agreement.py             # Cohen's Kappa for human-LLM agreement
-│       └── evaluate.py              # Evaluation harness
+│   ├── agent/                      ← classify.py, retrieve.py, generate_reply.py, escalate.py, llm_client.py
+│   ├── baselines/                  ← majority_baseline.py, tfidf_baseline.py, rule_escalation.py
+│   ├── data_prep/                  ← data cleaning, intent clustering, evaluation set sampling
+│   └── metrics/                    ← evaluation harness, judge rubrics, human-LLM agreement
 │
-├── scripts/
-│   ├── run_baselines.py             # Runs 5-fold OOF evaluation for both baselines
-│   ├── run_evaluation.py            # Runs full agent evaluation on 200 examples
-│   ├── analyze_failures.py          # Identifies and categorises failure cases
-│   ├── label_judge_agreement.py     # Computes Cohen's Kappa between human and LLM judge
-│   ├── inspect_dataset.py           # Exploratory data analysis on raw TWCS corpus
-│   └── hotfix_nan.py                # Utility: patches NaN values in evaluation files
-│
-├── tests/                           # Unit tests (run with unittest discover)
+├── scripts/                        ← run_baselines.py, run_evaluation.py, analyze_failures.py
+├── tests/
 ├── docs/
-│   └── final_report.md              # Full write-up: problem framing, methodology, results
-├── cluster_output.txt               # Raw KMeans cluster inspection output
-├── .env.example                     # Environment variable template
-└── .cspell.json                     # Spell-checker config for technical terms
+│   └── final_report.md
+└── .env.example
 ```
+
 
 ---
 
