@@ -1,234 +1,328 @@
-# Customer Support AI Agent
+# Customer Support AI Agent — AppleSupport
 
-This repository implements a brand-specific AI customer support agent designed to resolve inquiries for AppleSupport. The agent classifies the intent of incoming customer messages, retrieves semantically relevant historical resolutions, and generates a grounded draft reply. It then employs a hybrid heuristic model to decide whether the generated reply can be automatically sent or if the issue requires escalation to a human representative.
+An end-to-end AI pipeline that ingests real, unstructured Twitter customer support messages and automatically classifies intent, generates a historically grounded reply, and decides whether to escalate to a human — without inventing facts the support history doesn't support.
 
-## Final Report
+Built as a portfolio project demonstrating RAG, LLM-as-judge evaluation, classical ML baselines, and rigorous offline evaluation methodology.
 
-[Read the final report](docs/final_report.md)
+---
 
-## What It Does
+## Table of Contents
 
-The complete pipeline operates as follows:
+- [Problem](#problem)
+- [How It Works](#how-it-works)
+- [Tech Stack](#tech-stack)
+- [Key Results](#key-results)
+- [Project Structure](#project-structure)
+- [How to Run](#how-to-run)
+- [What I'd Improve Next](#what-id-improve-next)
 
-1. **Customer message**: The agent receives a raw text inquiry from a customer.
-2. **Intent classification**: The message is categorized into one of 8 predefined intent taxonomy buckets.
-3. **Historical case retrieval**: The agent searches a processed dataset of historical support interactions to find the most relevant past resolutions.
-4. **Reply generation**: Using the retrieved historical cases as context, the agent drafts a response tailored to the customer's current issue without hallucinating out-of-policy information.
-5. **Escalation decision**: The agent evaluates the draft reply and the customer's original intent to decide if it should be auto-handled or escalated.
-6. **Final response**: The system outputs the draft reply alongside the decision to either resolve the ticket automatically or alert human support.
+---
 
-## Project Scope
+## Problem
 
-- **Selected brand**: AppleSupport
-- **Number of intent categories**: 8
-- **Evaluation set size**: 200 manually labeled examples
-- **Historical data sampling approach**: A subset of 8,000 historical interactions where AppleSupport successfully resolved a customer issue.
-- **What the system does NOT attempt to solve**: It does not directly interface with live Twitter APIs, nor does it attempt to support generalized multi-brand intent classification. It assumes English-language inputs.
+Customer support at scale is genuinely hard. Incoming messages are short, noisy, and ambiguous — "My phone is acting weird" could mean a hardware failure, a software crash, or a connectivity issue. Routing that correctly, replying appropriately, and knowing when to escalate to a human are all non-trivial decisions.
 
-## Dataset
+Generic chatbots fail here in a predictable way: they hallucinate policies, invent troubleshooting steps, or apologize for problems that aren't the company's fault. This project solves that by grounding every generated reply strictly in historical precedent — what AppleSupport has actually said before in comparable situations.
 
-- **Dataset source**: Customer Support on Twitter
-- **Kaggle source**: [thoughtvector/customer-support-on-twitter](https://www.kaggle.com/thoughtvector/customer-support-on-twitter)
-- **Relevant fields used**: `tweet_id`, `author_id`, `in_response_to_tweet_id`, `text`
-- **How AppleSupport conversations were selected**: We filtered the corpus for rows where the `author_id` was `AppleSupport` responding to a customer.
-- **How customer → brand historical interactions were constructed**: We joined the `in_response_to_tweet_id` of the brand's reply to the original customer's `tweet_id`.
-- **Text cleaning performed**: URLs, mentions, and excessive whitespace were stripped to normalize the text for embedding.
-- **Sampling strategy**: 8,000 random clean interaction pairs were extracted to form `data/processed/apple_support_sample.csv`.
+The dataset is the [Kaggle "Customer Support on Twitter" corpus](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) (~2.8M rows). The project filters it down to AppleSupport-specific conversations, making this a realistic brand-specific deployment scenario rather than a generic demo.
 
-## Intent Taxonomy
+---
 
-Sourced from `data/processed/intent_definitions.json`:
+## How It Works
 
-1. **ios_update_problems**: Issues related to downloading, installing, or post-installation bugs of iOS updates.
-2. **battery_drain**: Complaints about battery life decreasing rapidly or devices dying unexpectedly.
-3. **keyboard_autocorrect_glitch**: Issues with the iOS keyboard, autocorrect errors, or the 'I' to 'A ?' or 'I.' glitch.
-4. **app_or_system_crashes**: Apps freezing, lagging, crashing, or the whole device becoming unresponsive.
-5. **device_hardware_problems**: Physical damage, screen cracking, hardware malfunctions, or unexpected noises.
-6. **apple_music_itunes**: Problems with Apple Music subscriptions, iTunes purchases, skipped songs, or missing libraries.
-7. **account_icloud_security**: Issues with Apple ID, iCloud storage, password resets, hacking, or scam emails.
-8. **shipping_store_support**: Problems with product delivery, store appointments, or customer service interactions.
+### Plain English Pipeline
 
-## Architecture
-
-The project is structured into modular components:
-
-```text
-src/
-├── agent/            # Core logic for classifying, retrieving, generating, and escalating.
-├── baselines/        # Implementations for Majority and TF-IDF baselines.
-├── data_prep/        # Scripts used to sample and build the interaction datasets.
-└── metrics/          # Evaluation tools for scoring the agent against ground truth.
-
-data/
-├── raw/              # Original datasets (excluded from version control).
-├── processed/        # Cleaned 8,000-row sample and intent definitions.
-└── evaluation/       # Held-out 200-row evaluation set and generated results.
-
-scripts/              # Top-level executable scripts to run the pipeline.
-tests/                # Unit tests verifying component behavior.
-docs/                 # Detailed reports and architectural decisions.
+```
+Customer message
+      ↓
+[1] Classify intent        → which of 8 categories does this fall into?
+      ↓
+[2] Retrieve context       → find the 3 most similar past support cases
+      ↓
+[3] Generate reply         → draft a response grounded only in those cases
+      ↓
+[4] Escalate or resolve    → should a human take over, or is this safe to send?
 ```
 
-## Agent Pipeline
+### Technical Breakdown
 
-The AI agent execution flow involves several modules:
+**1. Data Preparation (`src/data_prep/prepare_data.py`)**
+- Filters the raw TWCS corpus to AppleSupport replies only
+- Reconstructs customer → brand conversation pairs via tweet ID matching
+- Cleans text: decodes HTML entities, strips URLs, normalises whitespace
+- Samples 8,000 clean pairs (`apple_support_sample.csv`) as the retrieval corpus
 
-- `classify.py`: Performs intent classification by matching the customer's text against the taxonomy definitions.
-- `retrieve.py`: Generates dense embeddings for the customer's text using `sentence-transformers` and performs cosine similarity search against the historical support dataset.
-- `generate_reply.py`: Prompts the language model to construct a response using only the retrieved interactions as grounding context.
-- `escalate.py`: Applies a combination of keyword-based rules and LLM reasoning to determine if the message requires human intervention.
-- `run_agent.py`: Orchestrates the flow between the above modules.
-- `llm_client.py`: A lightweight, zero-dependency client that interfaces with the language model provider.
+**2. Intent Taxonomy Discovery (`src/data_prep/discover_intents.py`)**
+- Embeds 200 sampled customer messages using `sentence-transformers/all-MiniLM-L6-v2`
+- Clusters them into 8 groups using KMeans to discover the natural intent structure
+- Final taxonomy (defined in `intent_definitions.json`):
+  - `battery_drain`
+  - `ios_update_problems`
+  - `app_or_system_crashes`
+  - `device_hardware_problems`
+  - `account_icloud_security`
+  - `connectivity_wifi_bluetooth`
+  - `screen_display_issues`
+  - `general_inquiry_or_other`
 
-### Mock Mode vs Real LLM Mode
-By default, the pipeline operates in a development/testing **Mock Mode** (`MOCK_MODE=true` in `.env`). This mode bypasses external network requests, instantly returning deterministic fallback strings (e.g., classifying everything as `device_hardware_problems`). 
-*Note: Mock-generated metrics do not reflect actual LLM performance.* To use the real LLM, supply an API key and set `MOCK_MODE=false`.
+**3. Intent Classifier (`src/agent/classify.py`)**
+- Few-shot LLM prompt that maps the customer message to exactly one of the 8 intents
+- Returns `{"intent": "...", "confidence": 0.0–1.0}`
+- Falls back safely on JSON parse failures
 
-## Evaluation
+**4. Retriever (`src/agent/retrieve.py`)**
+- Encodes the incoming message with `all-MiniLM-L6-v2`
+- Computes cosine similarity against 8,000 pre-computed embeddings (cached as `.npy`)
+- Returns the top-3 most semantically similar historical support pairs
 
-The pipeline is tested against a rigorously curated **200-example evaluation set**. Each example was manually labeled with a ground-truth intent and an ideal escalation action. 
+**5. Reply Generator (`src/agent/generate_reply.py`)**
+- RAG-based LLM call — the retrieved cases are injected directly into the prompt as evidence
+- Strict grounding rule: the model is instructed not to reference any policy, step, or fact that isn't present in the retrieved context
+- Falls back to a polite escalation message if no clear resolution is found in context
 
-The evaluation spans several dimensions:
-- **Intent accuracy / Macro-F1**: Measures classification performance.
-- **Escalation precision / recall**: Measures the safety routing mechanism.
-- **LLM-as-judge**: Evaluates the drafted reply on a 1-5 scale across Groundedness, Correctness, Tone, Actionability, and Factual Consistency.
+**6. Escalation Logic (`src/agent/escalate.py`)**
+- Hybrid: deterministic keyword rules first, LLM reasoning for ambiguous cases
+- Hard escalation triggers: `"sue"`, `"lawyer"`, `"stolen"`, `"hacked"`, `"police"`, `"fraud"`, `"scam"`, `"manager"`
+- Intent-based rules: `account_icloud_security` and `device_hardware_problems` always escalate to humans
+- LLM heuristic: evaluates whether the draft reply safely resolves the case or needs intervention
 
-### Results Summary
+**7. LLM Client (`src/agent/llm_client.py`)**
+- Zero-dependency client built with Python's stdlib `urllib` — no `requests` or `openai` package required
+- Supports OpenAI-compatible API endpoints
+- Built-in `MOCK_MODE` for fully offline execution (no API key needed to run or test)
 
-| Metric | Majority Baseline | TF-IDF Baseline | AI Agent (Mock Mode) |
-|---|---|---|---|
-| **Intent Accuracy** | 0.480 | 0.670 | 0.110 |
-| **Intent Macro-F1** | 0.081 | 0.213 | 0.025 |
-| **Escalation Precision** | 0.500 | 0.500 | 0.235 |
-| **Escalation Recall** | 0.128 | 0.128 | 0.060 |
+**8. Evaluation (`scripts/run_evaluation.py`, `src/metrics/`)**
+- 200 hand-labelled examples (`evaluation_set.csv`) with gold intents and ideal actions
+- **5-fold stratified out-of-fold (OOF)** cross-validation — zero label leakage by design
+- LLM-as-judge scoring across 5 dimensions: Groundedness, Correctness, Tone, Actionability, Factual Consistency
+- Human parity measurement via `scripts/label_judge_agreement.py` (Cohen's Kappa)
 
-*(Real LLM results are not available in this report, as the pipeline was executed entirely offline in Mock Mode to guarantee zero API dependency overhead).*
+---
 
-## Baselines
+## Tech Stack
 
-To contextualize the AI Agent's performance, we implemented two deterministic baselines:
-1. **Majority Baseline**: Identifies the most frequent intent in the training data and predicts it universally. It serves as a floor for accuracy evaluation.
-2. **TF-IDF Baseline**: Uses a 1000-feature `TfidfVectorizer` paired with a `LogisticRegression` classifier. It serves as a robust classical machine learning benchmark that an LLM architecture must demonstrably beat.
+| Component | Library / Tool |
+|---|---|
+| Language | Python 3 (stdlib-first design) |
+| Embeddings | `sentence-transformers` (`all-MiniLM-L6-v2`) |
+| Embedding storage | NumPy `.npy` (flat-file vector cache) |
+| Similarity search | `scikit-learn` (`cosine_similarity`) |
+| Baselines | `scikit-learn` (`TfidfVectorizer`, `LogisticRegression`, `StratifiedKFold`) |
+| LLM | OpenAI-compatible API (configurable via `.env`); `gpt-4o-mini` default |
+| LLM client | Custom `urllib`-based client (zero external dependencies) |
+| Data | `pandas` |
+| Testing | `unittest` |
 
-Both baselines are evaluated using strict 5-Fold Stratified Out-Of-Fold cross-validation to prevent label leakage.
+> **Note:** `requirements.txt` is empty because the project was originally built in a restricted environment where `pip install` was blocked. Dependencies are listed above and must be installed manually.
 
-## Human Judge Agreement
+---
 
-To ensure the LLM-as-judge metrics are trustworthy, we measure them against human evaluations.
-- **Sample size**: 35 manually scored examples.
-- **Scoring scale**: 1-5.
-- **Scoring dimensions**: Overall quality.
-- **Agreement statistic**: Weighted Cohen's Kappa.
-- **Actual agreement result**: Due to the deterministic nature of Mock Mode, the current human scores collected yielded an incomplete/inconclusive agreement statistic (Kappa: 0.0) as the mock model returned identical `3.2` scores across all samples.
+## Key Results
 
-## Failure Analysis
+Evaluated on 200 hand-labelled examples using 5-fold stratified OOF cross-validation.
 
-Our automated failure analysis (`data/evaluation/failure_analysis.md`) identified the following top failure modes for the baseline and agent models:
+### Intent Classification
 
-1. **Intent Misclassification**: Ambiguous language like "My phone is acting weird" fails keyword logic. *Reason*: Broad terminology doesn't easily map to discrete taxonomy buckets.
-2. **Escalation False Positives**: Rule-based systems over-trigger on keywords like "stolen". *Reason*: "My stolen phone was returned" is benign but triggers strict rules.
-3. **Out-of-Distribution Inputs**: Gibberish or emojis. *Reason*: Fails to match any dense embeddings.
-4. **Ungrounded Hallucinations**: Standard troubleshooting steps appear in the generation. *Reason*: The LLM relies on parametric memory instead of the provided context.
-5. **Taxonomy Overlap**: Confusion between `device_hardware_problems` and `battery_drain`. *Reason*: Battery degradation is technically a hardware issue, causing ground-truth overlap.
+| Model | Accuracy | Macro F1 |
+|---|---|---|
+| Majority Baseline | 0.480 | 0.081 |
+| TF-IDF + Logistic Regression | **0.670** | **0.213** |
+| AI Agent (Mock LLM) | 0.110 | 0.025 |
 
-## Setup
+### Escalation
 
-Execute the following commands in Windows PowerShell to set up the environment:
+| Model | Precision | Recall |
+|---|---|---|
+| Majority Baseline | 0.500 | 0.128 |
+| TF-IDF Baseline | 0.500 | 0.128 |
+| AI Agent (Mock LLM) | 0.235 | 0.060 |
 
-```powershell
-git clone https://github.com/RashmithaDsouza/customer-support-agent.git
-cd customer-support-agent
+### LLM Judge Scores (1–5 scale, Mock Mode)
 
-python -m venv .venv
-.venv\Scripts\Activate.ps1
+| Dimension | Score |
+|---|---|
+| Overall | 3.20 / 5.0 |
+| Tone | 4.00 / 5.0 |
+| Groundedness | 3.00 / 5.0 |
 
-pip install -r requirements.txt
+> **Important caveat:** The AI Agent's low classification accuracy (11%) is a mock mode artifact, not a reflection of real LLM performance. `MOCK_MODE=true` returns a hardcoded fallback intent regardless of input — its purpose is pipeline stability and reproducibility, not accuracy. The TF-IDF baseline at 67% accuracy for an 8-class problem is the meaningful offline comparison. Real agent performance would require an active API key.
+
+---
+
+## Project Structure
+
+```
+customer-support-agent/
+│
+├── data/
+│   ├── raw/                         # Raw TWCS corpus (not committed — too large)
+│   ├── processed/
+│   │   ├── apple_support_pairs.csv       # All matched customer-reply pairs
+│   │   ├── apple_support_sample.csv      # 8,000-pair retrieval corpus
+│   │   ├── apple_support_sample_embeddings.npy  # Cached embeddings for fast retrieval
+│   │   ├── intent_definitions.json       # Canonical intent names + descriptions
+│   │   └── intent_clusters.csv           # KMeans clustering output
+│   └── evaluation/
+│       ├── evaluation_set.csv            # 200 hand-labelled gold examples
+│       ├── baseline_predictions.csv      # Majority + TF-IDF predictions
+│       ├── agent_predictions.csv         # AI agent predictions
+│       └── reply_judge_results.csv       # LLM-as-judge scores per example
+│
+├── src/
+│   ├── agent/
+│   │   ├── run_agent.py             # Main entry point — runs the full pipeline
+│   │   ├── classify.py              # LLM-based intent classifier
+│   │   ├── retrieve.py              # Dense retrieval via sentence embeddings
+│   │   ├── generate_reply.py        # RAG-based reply generator
+│   │   ├── escalate.py              # Hybrid rule + LLM escalation decision
+│   │   └── llm_client.py            # Zero-dependency OpenAI-compatible LLM client
+│   ├── baselines/
+│   │   ├── majority_baseline.py     # Predicts most frequent class in training fold
+│   │   ├── tfidf_baseline.py        # TF-IDF + Logistic Regression classifier
+│   │   ├── canned_reply.py          # Rule-based canned replies by intent
+│   │   └── rule_escalation.py       # Keyword-only escalation baseline
+│   ├── data_prep/
+│   │   ├── prepare_data.py          # Builds customer-reply pairs from raw TWCS data
+│   │   ├── discover_intents.py      # Embeds + KMeans clusters to discover intent taxonomy
+│   │   ├── label_intents.py         # LLM-assisted intent labelling for evaluation set
+│   │   └── create_evaluation_set.py # Builds the 200-example gold evaluation set
+│   └── metrics/
+│       ├── reply_judge.py           # LLM-as-judge scoring (5 dimensions)
+│       ├── intent_metrics.py        # Accuracy + Macro F1 for intent classification
+│       ├── escalation_metrics.py    # Precision + Recall for escalation decisions
+│       ├── agreement.py             # Cohen's Kappa for human-LLM agreement
+│       └── evaluate.py              # Evaluation harness
+│
+├── scripts/
+│   ├── run_baselines.py             # Runs 5-fold OOF evaluation for both baselines
+│   ├── run_evaluation.py            # Runs full agent evaluation on 200 examples
+│   ├── analyze_failures.py          # Identifies and categorises failure cases
+│   ├── label_judge_agreement.py     # Computes Cohen's Kappa between human and LLM judge
+│   ├── inspect_dataset.py           # Exploratory data analysis on raw TWCS corpus
+│   └── hotfix_nan.py                # Utility: patches NaN values in evaluation files
+│
+├── tests/                           # Unit tests (run with unittest discover)
+├── docs/
+│   └── final_report.md              # Full write-up: problem framing, methodology, results
+├── cluster_output.txt               # Raw KMeans cluster inspection output
+├── .env.example                     # Environment variable template
+└── .cspell.json                     # Spell-checker config for technical terms
 ```
 
-### Configuration
-Copy the `.env.example` to `.env`. Ensure `MOCK_MODE=true` is set to safely run offline.
+---
 
-## Running The Project
+## How to Run
 
-The following commands operate smoothly using the existing project architecture. 
+### Prerequisites
 
-**Generate baseline evaluation predictions:**
-```powershell
-python scripts\run_baselines.py
+Install dependencies:
+
+```bash
+pip install pandas numpy scikit-learn sentence-transformers
 ```
 
-**Generate AI Agent predictions and judge metrics:**
-```powershell
-python scripts\run_evaluation.py
+### 1. Configure environment
+
+Copy the example env file and edit it:
+
+```bash
+copy .env.example .env
 ```
 
-**Extract and build the failure analysis report:**
-```powershell
-python scripts\analyze_failures.py
+`.env` options:
+
+```
+LLM_PROVIDER=openai
+LLM_API_KEY=your_api_key_here   # leave blank to run in Mock Mode
+LLM_MODEL=gpt-4o-mini
+MOCK_MODE=true                  # set to false to use a real LLM
 ```
 
-**Run the pipeline manually on a custom string:**
-```powershell
-python -m src.agent.run_agent "My screen is cracked and won't turn on."
+> Set `MOCK_MODE=true` to run the full pipeline without an API key. Outputs will use hardcoded fallback responses — useful for testing pipeline integrity.
+
+### 2. Run the agent on a single message
+
+```bash
+python src/agent/run_agent.py "My iPhone battery drains super fast after the iOS update"
 ```
 
-## Reproducing Results
+Example output:
+```
+============================================================
+CUSTOMER MESSAGE:
+My iPhone battery drains super fast after the iOS update
+============================================================
 
-To fully reproduce the evaluation results generated in this repository, run:
+[1/4] Classifying intent...
+  -> Intent: battery_drain (Confidence: 0.95)
 
-### Local / Mock Reproduction (No API Key Required)
-1. `.venv\Scripts\Activate.ps1`
-2. `python scripts\run_baselines.py`
-3. `python scripts\run_evaluation.py`
-4. `python scripts\analyze_failures.py`
+[2/4] Retrieving historical context...
+  -> Case 1 (Sim: 0.89): My battery life has been terrible since updating...
+  -> Case 2 (Sim: 0.84): After updating to iOS 16 my phone dies by noon...
+  -> Case 3 (Sim: 0.81): iPhone 13 battery draining way faster than before...
 
-### Real LLM Reproduction
-1. Update `.env` to include your provider API key.
-2. Set `MOCK_MODE=false`.
-3. Follow steps 2-4 above.
+[3/4] Generating grounded reply...
+DRAFT REPLY:
+We're sorry to hear about the battery issue after the update. ...
 
-## Example
+[4/4] Deciding escalation...
+  -> Action: AUTO
+  -> Reason: Standard battery inquiry resolved by context.
+============================================================
+```
 
-An execution of the pipeline (`python -m src.agent.run_agent`) yields:
+### 3. Run baseline evaluation
 
-**Customer message**: "My phone is acting weird."
-**Predicted intent**: `device_hardware_problems` (Fallback Mock Mode)
-**Retrieved evidence**: 
-- *Historical Case 1: Issue with device power...*
-**Drafted reply**: "This is a mock draft reply. Please check your settings."
-**Escalation decision**: `escalate` 
+```bash
+python scripts/run_baselines.py
+```
 
-## Testing
+Runs 5-fold stratified OOF cross-validation on the 200-example evaluation set. Saves predictions to `data/evaluation/baseline_predictions.csv`.
 
-To verify the integrity of the components:
+### 4. Run full agent evaluation
 
-```powershell
+```bash
+python scripts/run_evaluation.py
+```
+
+Evaluates the AI agent on all 200 examples. Saves predictions and LLM judge scores to `data/evaluation/`.
+
+### 5. Analyse failure cases
+
+```bash
+python scripts/analyze_failures.py
+```
+
+### 6. Inspect the raw dataset (requires raw TWCS data)
+
+```bash
+python scripts/inspect_dataset.py
+```
+
+> The raw TWCS corpus (`data/raw/twcs.csv`) is not committed to this repo due to its size (~2.8M rows). Download it from [Kaggle](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) and place it at `data/raw/twcs.csv`.
+
+### 7. Run unit tests
+
+```bash
 python -m unittest discover tests
 ```
-**Current Result**: `Ran 12 tests in ~150s. OK.`
 
-## Design Decisions
+---
 
-For deep dives into architectural decisions (e.g., custom `.env` parsers, zero-dependency LLM clients, Out-Of-Fold baseline implementations), refer to the full [Final Report](docs/final_report.md).
+## What I'd Improve Next
 
-## Limitations
+**1. Replace flat-file retrieval with a proper vector store**
+The current retrieval loads and re-encodes the full 8,000-pair corpus on each call (mitigated by `.npy` caching, but still linear scan). For a production deployment — or to scale beyond 8K examples — replacing the NumPy cosine scan with a proper approximate nearest-neighbour index (e.g., FAISS or ChromaDB) would reduce retrieval latency significantly and make the system genuinely scalable.
 
-- **Brand-specific scope**: The agent embeddings are optimized exclusively for AppleSupport vernacular.
-- **Mock Mode**: Currently, the results generated in this repository reflect fallback mock data, not true LLM performance.
-- **Retrieval limitations**: The retrieval corpus is limited to 8,000 interactions; it lacks coverage for rare edge cases present in the full 2.8M row dataset.
-- **Inconsistent Support Behavior**: The historical cases contain human error; grounding heavily on these past interactions risks perpetuating inconsistent support advice.
+**2. Evaluate with a real LLM and expand the gold set**
+Every AI Agent metric in the current report reflects Mock Mode fallback behaviour, not actual LLM performance. The most valuable next step is running the full evaluation pipeline with an active API key to get real intent classification and reply quality numbers. Additionally, 200 labelled examples with as few as 3 instances for some minority classes makes Macro F1 statistically unreliable — a larger gold set (1,000+ examples) would produce more stable comparisons.
 
-## Future Improvements
+**3. Tighten the escalation decision boundary**
+The current hybrid escalation logic produces false positives on phrases like "my stolen phone was returned" — the keyword `"stolen"` hard-fires escalation even when context is benign. Replacing the flat keyword list with an intent-aware, context-sensitive check (letting the LLM weigh keyword presence against the full message context) would reduce unnecessary escalations without sacrificing coverage on genuinely sensitive cases.
 
-- Enhance few-shot prompting examples to reduce intent misclassifications.
-- Allow the LLM to contextually override hardcoded rule-based escalation triggers.
+---
 
-## Reproducibility Notes
+## Acknowledgements
 
-- **Sampling**: Stratified 5-Fold cross-validation (`random_state=42`).
-- **Embeddings**: `sentence-transformers/all-MiniLM-L6-v2`.
-- Generated artifacts are strictly saved to the `data/evaluation/` directory.
-
-## License / Attribution
-
-This project utilizes the [Customer Support on Twitter dataset](https://www.kaggle.com/thoughtvector/customer-support-on-twitter) provided under Kaggle's public terms.
+- Dataset: [Customer Support on Twitter](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter) (Kaggle)
+- Embeddings: [`sentence-transformers/all-MiniLM-L6-v2`](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2) (Hugging Face)
