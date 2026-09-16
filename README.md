@@ -1,4 +1,4 @@
-# Customer Support AI Agent — AppleSupport
+# Customer Support AI Agent — 
 
 An end-to-end AI pipeline that ingests real, unstructured Twitter customer support messages and automatically classifies intent, generates a historically grounded reply, and decides whether to escalate to a human — without inventing facts the support history doesn't support.
 
